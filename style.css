@@ -19,7 +19,8 @@ header {
 }
 
 header p a {
-  font-size: 24px;
+  font-size: min(4vw, 24px);
+  /* font-size: 24px; */
   font-weight: bold;
   text-decoration: none;
   color: #333;
@@ -35,13 +36,14 @@ nav ul {
 nav ul li a {
   text-decoration: none;
   color: #777;
+  font-size: min(3vw, 16px);
   font-weight: 600;
   padding: 20px 1.5vw 19px;
   transition: 0.3s;
 }
 
 nav ul li a:hover {
-  background-color: #eee;
+  background-color: #ccc;
 }
 
 nav ul .submenu {
@@ -52,7 +54,7 @@ nav ul .submenu {
   left: 0;
 }
 
-nav ul .nav-about:hover ~ .submenu {
+nav ul .dropdown:hover .submenu {
   display: unset;
 }
 
@@ -77,84 +79,125 @@ section {
   color: #333;
 }
 
+#main {
+  position: relative;
+}
+
+#main::after {
+  content: attr(txt);
+  position: absolute;
+  color: white;
+  bottom: 20%;
+  left: 15%;
+  padding: 1.5vw;
+  width: 45%;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  font-size: 2vw;
+}
+
 #main img {
   width: 100%;
+  animation: images 0.3s;
 }
 
 #main a {
   display: inline-block;
   position: absolute;
-  top: 50%;
+  top: 45%;
   text-decoration: none;
-  font-size: 30px;
-  border: 2px solid white;
+  font-size: 3vw;
+  border: 0.2vw solid white;
   color: white;
   border-radius: 50%;
   padding: 0px;
-  width: 36px;
-  height: 36px;
+  width: 3.6vw;
+  height: 3.6vw;
   text-align: center;
-  line-height: 30px;
+  line-height: 3vw;
 }
 
 #main a:hover {
   background-color: white;
   color: #333;
-  border: 2px solid #333;
+  border: 0.2vw solid #333;
 }
 
 #main .prev {
-  left: 5px;
+  left: 0.5vw;
 }
 
 #main .next {
-  right: 5px;
+  right: 0.5vw;
 }
 
-#main .quotes {
+@keyframes images {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#main .dots-img {
   position: absolute;
-  color: white;
-  bottom: 3%;
-  left: 15%;
-  padding: 20px;
-  width: 45%;
-  /* height: 100px; */
-  background-color: rgba(0, 0, 0, 0.5);
-  font-weight: bold;
-  font-size: 25px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5%;
+}
+
+#main .dots-img .dots {
+  display: inline-block;
+  width: 1.3vw;
+  height: 1.3vw;
+  border: 0.2vw solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#main .dots-img .dots:hover {
+  border: 0.2vw solid #fff;
 }
 
 #values h1 {
-  margin: 70px 0 30px;
+  margin: 7vw 0 3vw;
   text-align: center;
+  font-size: min(24px, 3.6vw);
 }
 
 #values .values-box {
   display: flex;
   justify-content: center;
   color: white;
-  margin-bottom: 30px;
+  margin-bottom: 3vw;
 }
 
 #values .values-box .card {
   width: 300px;
   min-width: 200px;
   margin: 0 15px;
-  padding: 20px;
+  padding: 20px 10px 10px;
   text-align: center;
+  position: relative;
 }
 
 #values .values-box .card img {
-  height: 25px;
+  height: min(3.5vw, 25px);
 }
 
 #values .values-box .card h3 {
-  margin: 10px;
+  margin: 1vw;
+  font-size: min(18px, 2.7vw);
 }
 
 #values .values-box .card p {
-  margin: 20px;
-  font-size: 14px;
+  margin: 2vw;
+  font-size: min(14px, 2.1vw);
 }
 
 #values .card-1 {
@@ -172,31 +215,33 @@ section {
   border: 3px solid #3a7ba7;
 }
 
-#values .triangle {
+#values :is(.card-1, .card-2)::after {
+  content: "";
   border: 20px solid transparent;
-  width: 0;
-  height: 0;
-  margin-left: -15px;
-  margin-top: 100px;
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-#values .triangle-1 {
+#values .card-1::after {
   border-left-color: #e25242;
 }
 
-#values .triangle-2 {
+#values .card-2::after {
   border-left-color: #567b59;
 }
 
 #contact h1 {
-  margin-top: 120px;
+  margin-top: 12vw;
   text-align: center;
+  font-size: min(24px, 3.6vw);
 }
 
 #contact form {
   margin: auto;
-  padding: 50px;
-  padding-top: 20px;
+  padding: 5vw;
+  padding-top: 2vw;
   width: 50%;
   height: 80%;
   border-radius: 10px;
@@ -204,37 +249,54 @@ section {
 
 #contact label {
   display: block;
-  margin: 30px 0;
-  font-size: 1.2rem;
+  margin: 1.5vw 0;
+  font-size: min(1.2rem, 2.8vw);
 }
 
-#contact input,
-#contact textarea {
-  font-size: 1rem;
-  margin-top: 10px;
-  width: calc(100% - 22px);
-  padding: 10px;
+#contact :is(input, textarea, :is(:focus)) {
+  font-size: min(1rem, 2.3vw);
+  margin-top: 1vw;
+  width: calc(100% - 2.3vw);
+  padding: 1vw;
+  border-radius: 5px;
+  border: 1px solid #777;
+}
+
+#contact :is(input, textarea, :is(:focus)):invalid {
+  border: 1px solid #e25242;
+  outline: none;
+}
+
+#contact :is(input, textarea, :is(:focus)):invalid ~ .alert {
+  display: unset;
+}
+
+#contact .alert {
+  display: none;
+  color: #e25242;
+  font-size: min(1rem, 2.3vw);
 }
 
 #contact #submit {
   width: 100%;
-  padding: 10px;
+  padding: 1vw;
   background-color: #5696c2;
   border: 1px solid #3a7ba7;
   color: white;
-  font-size: 1.2rem;
+  font-size: min(1.2rem, 2.8vw);
   cursor: pointer;
 }
 
 footer {
   background-color: #333;
   color: white;
-  padding: 30px;
-  margin-top: 30px;
+  padding: min(3vw, 30px);
+  margin-top: min(3vw, 30px);
 }
 
 footer p {
   text-align: center;
+  font-size: min(2.4vw, 1rem);
 }
 
 footer .socmed {
@@ -242,6 +304,40 @@ footer .socmed {
 }
 
 footer .socmed img {
-  margin: 20px 5px 0;
-  height: 30px;
+  margin: 2vw 0.5vw 0;
+  height: min(3vw, 30px);
+}
+
+@media screen and (max-width: 700px) {
+  #values .values-box {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #values .values-box .card {
+    width: 80%;
+    margin: 15px 0;
+    text-align: center;
+  }
+
+  #values :is(.card-1, .card-2)::after {
+    content: "";
+    border: 20px solid transparent;
+    position: absolute;
+    right: 50%;
+    top: 100%;
+    transform: translateX(50%);
+  }
+
+  #values .card-1::after {
+    border-top-color: #e25242;
+  }
+
+  #values .card-2::after {
+    border-top-color: #567b59;
+  }
+
+  #contact form {
+    width: 70%;
+  }
 }
