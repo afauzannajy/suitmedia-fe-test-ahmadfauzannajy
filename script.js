@@ -1,12 +1,12 @@
 const gambar = ["images/about-bg.jpg", "images/bg.jpg"];
-const mainImg = document.querySelectorAll("#main .gambar");
-const mainNav = document.querySelectorAll("#main a");
-const mainTxt = document.querySelector("#main");
-const mainDot = document.querySelectorAll("#main .dots");
+const heroImg = document.querySelectorAll("#hero .gambar");
+const heroNav = document.querySelectorAll("#hero a");
+const heroTxt = document.querySelector("#hero");
+const heroDot = document.querySelectorAll("#hero .dots");
 const aboutNav = document.querySelector(".nav-about");
-const homeNav = document.querySelectorAll('[href="#"]:not(#main a)');
+const homeNav = document.querySelectorAll('[href="#"]:not(#hero a)');
 
-mainNav.forEach((nav) => {
+heroNav.forEach((nav) => {
   nav.addEventListener("click", function () {
     if (nav.className.includes("prev")) {
       navImg(-1);
@@ -16,7 +16,7 @@ mainNav.forEach((nav) => {
   });
 });
 
-mainDot.forEach((dot) => {
+heroDot.forEach((dot) => {
   dot.addEventListener("click", function () {
     if (dot.className.includes("dot-1")) {
       dotsImg(1);
@@ -48,36 +48,26 @@ function dotsImg(n) {
 }
 
 function showImg(n) {
-  if (n > mainImg.length) {
+  if (n > heroImg.length) {
     indexImg = 1;
   } else if (n < 1) {
-    indexImg = mainImg.length;
+    indexImg = heroImg.length;
   }
-  for (let i = 0; i < mainImg.length; i++) {
-    mainImg[i].style.display = "none";
-    mainDot[i].style.backgroundColor = "#888";
+  for (let i = 0; i < heroImg.length; i++) {
+    heroImg[i].style.display = "none";
+    heroDot[i].style.backgroundColor = "#888";
   }
-  mainImg[indexImg - 1].style.display = "block";
-  mainDot[indexImg - 1].style.backgroundColor = "#fff";
+  heroImg[indexImg - 1].style.display = "block";
+  heroDot[indexImg - 1].style.backgroundColor = "#fff";
   if (indexImg == 1) {
-    mainTxt.setAttribute(
+    heroTxt.setAttribute(
       "txt",
       "THIS IS A PLACE WHERE TECHNOLOGY & CREATIVITY FUSED INTO DIGITAL CHEMISTRY"
     );
   } else if (indexImg == 2) {
-    mainTxt.setAttribute(
+    heroTxt.setAttribute(
       "txt",
       "WE DON'T HAVE THE BEST BUT WE HAVE THE GREATEST TEAM"
     );
   }
 }
-
-/*
-const homeNav = document.querySelectorAll('[href="#"]:not(#main a)');
-homeNav.forEach((hn) => {
-  hn.addEventListener("click", function () {
-    mainImg.setAttribute("id", "home");
-    mainImg.setAttribute("src", gambar[1]);
-  });
-});
-*/
